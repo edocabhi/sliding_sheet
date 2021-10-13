@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 // ignore_for_file: public_member_api_docs
 
 void postFrame(VoidCallback callback) {
-  WidgetsBinding.instance?.addPostFrameCallback((_) => callback());
+  scheduleMicrotask(() => callback());
 }
 
 T swapSign<T extends num>(T value) {

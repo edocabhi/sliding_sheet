@@ -509,19 +509,23 @@ class _SlidingSheetState extends State<SlidingSheet>
       didCompleteInitialRoute = true;
       // Set the inital extent after the first frame.
       postFrame(
-        () => setState(
-          () => currentExtent = initialExtent,
-        ),
+        () {
+          if (mounted) {
+            setState(() => currentExtent = initialExtent);
+          }
+        },
       );
     }
   }
 
   void _flyInDialog() {
     postFrame(() async {
-      // Snap to the initial snap with a one frame delay when the
-      // extents have been correctly calculated.
-      await snapToExtent(initialExtent);
-      setState(() => didCompleteInitialRoute = true);
+      if (mounted) {
+        // Snap to the initial snap with a one frame delay when the
+        // extents have been correctly calculated.
+        await snapToExtent(initialExtent);
+        setState(() => didCompleteInitialRoute = true);
+      }
     });
 
     widget.route!.popped.then(
