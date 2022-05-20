@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:example/util/util.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -123,8 +122,7 @@ class _ExampleState extends State<Example> {
               width: 16,
               height: 4,
               borderRadius: 2,
-              color:
-                  Colors.grey.withOpacity(.5 * (1 - interval(0.7, 1.0, state.progress))),
+              color: Colors.grey.withOpacity(.5 * (1 - interval(0.7, 1.0, state.progress))),
             ),
           ),
           const SizedBox(height: 8),
@@ -166,8 +164,8 @@ class _ExampleState extends State<Example> {
       Icon icon,
       Text text,
       VoidCallback onTap, {
-      BorderSide border,
-      Color color,
+      BorderSide? border,
+      Color? color,
     }) {
       final child = Row(
         mainAxisSize: MainAxisSize.min,
@@ -217,7 +215,7 @@ class _ExampleState extends State<Example> {
             ),
             () async {
               // Inherit from context...
-              await SheetController.of(context).hide();
+              await SheetController.of(context)?.hide();
               Future.delayed(const Duration(milliseconds: 1500), () {
                 // or use the controller
                 controller.show();
@@ -242,9 +240,7 @@ class _ExampleState extends State<Example> {
                     fontSize: 15,
                   ),
                 ),
-                !isExpanded
-                    ? () => controller.scrollTo(state.maxScrollExtent)
-                    : controller.collapse,
+                !isExpanded ? () => controller.scrollTo(state.maxScrollExtent) : controller.collapse,
                 color: Colors.white,
                 border: BorderSide(
                   color: Colors.grey.shade400,
@@ -366,8 +362,7 @@ class _ExampleState extends State<Example> {
   Widget buildSteps(BuildContext context) {
     final steps = [
       Step('Go to your pubspec.yaml file.', '2 seconds'),
-      Step(
-          "Add the newest version of 'sliding_sheet' to your dependencies.", '5 seconds'),
+      Step("Add the newest version of 'sliding_sheet' to your dependencies.", '5 seconds'),
       Step("Run 'flutter packages get' in the terminal.", '4 seconds'),
       Step("Happy coding!", 'Forever'),
     ];
@@ -526,7 +521,7 @@ class _ExampleState extends State<Example> {
                 children: <Widget>[
                   Text(
                     'Confirm purchase',
-                    style: textTheme.headline4.copyWith(
+                    style: textTheme.headline4?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -537,7 +532,7 @@ class _ExampleState extends State<Example> {
                       Expanded(
                         child: Text(
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sagittis tellus lacus, et pulvinar orci eleifend in.',
-                          style: textTheme.subtitle1.copyWith(
+                          style: textTheme.subtitle1?.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -566,7 +561,7 @@ class _ExampleState extends State<Example> {
                     onPressed: () => Navigator.pop(context),
                     child: Text(
                       'Cancel',
-                      style: textTheme.subtitle1.copyWith(
+                      style: textTheme.subtitle1?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -577,14 +572,14 @@ class _ExampleState extends State<Example> {
                     onPressed: () {
                       if (!isDismissable) {
                         isDismissable = true;
-                        SheetController.of(context).rebuild();
+                        SheetController.of(context)?.rebuild();
                       } else {
                         Navigator.pop(context);
                       }
                     },
                     child: Text(
                       'Approve',
-                      style: textTheme.subtitle1.copyWith(
+                      style: textTheme.subtitle1!.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -606,8 +601,7 @@ class _ExampleState extends State<Example> {
         Align(
           alignment: Alignment.topRight,
           child: Padding(
-            padding:
-                EdgeInsets.fromLTRB(0, MediaQuery.of(context).padding.top + 16, 16, 0),
+            padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).padding.top + 16, 16, 0),
             child: FloatingActionButton(
               backgroundColor: Colors.white,
               onPressed: () async {
