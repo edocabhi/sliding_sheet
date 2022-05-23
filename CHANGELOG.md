@@ -1,3 +1,7 @@
+## 0.5.3
+* Fix "The Scrollbar's ScrollController has no ScrollPosition attached" error
+* Update dependencies, example & Android embedding (v2)
+
 ## 0.5.2
 * **Added** `customBuilder` for infinite lists
 

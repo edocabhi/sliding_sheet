@@ -16,7 +16,7 @@ Click [here](https://github.com/bxqm/sliding_sheet/blob/master/example/lib/main.
 Add it to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  sliding_sheet: ^0.5.2
+  sliding_sheet: ^0.5.3
 ```
 Install packages from the command line
 ```
