@@ -682,7 +682,7 @@ class _SlidingSheetState extends State<SlidingSheet> with TickerProviderStateMix
     sheetController!._collapse = () => snapToExtent(minExtent);
     sheetController!._dismiss = () {
       controller.stopAnyRunningSnapAnimation();
-      controller.dispose();
+      // controller.dispose();
     };
 
     if (!isDialog) {
