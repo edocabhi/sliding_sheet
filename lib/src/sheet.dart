@@ -680,6 +680,10 @@ class _SlidingSheetState extends State<SlidingSheet> with TickerProviderStateMix
     };
     sheetController!._expand = () => snapToExtent(maxExtent);
     sheetController!._collapse = () => snapToExtent(minExtent);
+    sheetController!._dismiss = () {
+      controller.stopAnyRunningSnapAnimation();
+      dispose();
+    };
 
     if (!isDialog) {
       sheetController!._rebuild = () {
@@ -1295,6 +1299,10 @@ class SheetController {
   /// Slides the sheet off to the bottom and hides it.
   Future<void>? hide() => _hide?.call();
   Future<void> Function()? _hide;
+
+  /// Immediately dismiss the sliding sheet
+  void dismiss() => _dismiss?.call();
+  void Function()? _dismiss;
 
   /// The current [SheetState] of this [SlidingSheet].
   SheetState? get state => _state;
